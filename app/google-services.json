@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "401192862799",
+    "firebase_url": "https://etho-4a965.firebaseio.com",
+    "project_id": "etho-4a965",
+    "storage_bucket": "etho-4a965.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:401192862799:android:7a680fdfc7f5c5eef5163a",
+        "android_client_info": {
+          "package_name": "com.bytelogs.etho"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "401192862799-02311i9tb70mvhvjd6dmvuk105hlf3m3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.bytelogs.etho",
+            "certificate_hash": "e31e6644c61252e632568b48af27640b7dc5bb96"
+          }
+        },
+        {
+          "client_id": "401192862799-c61i7ql5m8boiiqdfo4n62bfshhgbs1s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD61B9QQPR3w7zYJFW2gkHJl8cIlI2rwvI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "401192862799-c61i7ql5m8boiiqdfo4n62bfshhgbs1s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

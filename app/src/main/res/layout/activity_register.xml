@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.RegistrationActivity">
+
+    <RelativeLayout
+        android:layout_margin="8dp"
+        android:layout_centerInParent="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <androidx.appcompat.widget.AppCompatEditText
+            android:hint="Email"
+            android:id="@+id/etEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <androidx.appcompat.widget.AppCompatEditText
+            android:layout_below="@+id/etEmail"
+            android:inputType="textPassword"
+            android:hint="Password"
+            android:id="@+id/etPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <androidx.appcompat.widget.AppCompatEditText
+            android:layout_below="@+id/etPassword"
+            android:inputType="textPassword"
+            android:hint="Re-Enter Password"
+            android:id="@+id/etRepassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_marginTop="16dp"
+            android:layout_below="@+id/etRepassword"
+            android:id="@+id/btRegister"
+            android:textColor="@android:color/white"
+            android:background="@color/colorAccent"
+            android:text="Register"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </RelativeLayout>
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_margin="8dp"
+        android:layout_alignParentBottom="true"
+        android:text="Login"
+        android:id="@+id/btLogin"
+        android:textColor="@android:color/white"
+        android:background="@color/colorAccent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <ProgressBar
+        android:visibility="gone"
+        android:layout_centerInParent="true"
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+
+
+</RelativeLayout>
