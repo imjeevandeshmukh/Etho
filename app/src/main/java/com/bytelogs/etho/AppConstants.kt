@@ -9,6 +9,7 @@ object AppConstants {
          val INVALIDEMAIL = 5
          val INVALIDPASSWORD = 6
          val MISMATCHPASSWORD = 7
+         var PROFILE_URL :String = ""
 
 
 }

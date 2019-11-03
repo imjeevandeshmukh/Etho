@@ -50,6 +50,7 @@ class RegistrationActivity : BaseActivity(),View.OnClickListener {
     private fun moveToLogin(){
         val intent = Intent(this,LoginActivity::class.java)
         startActivity(intent)
+        finish()
     }
 
     private fun handleOnClickRegister(){
@@ -73,7 +74,12 @@ class RegistrationActivity : BaseActivity(),View.OnClickListener {
     private fun onSuccessVerificationCredentials(){
         registerViewModel.createAccount(email,password).observe(this, Observer {
             when(it){
-                AppConstants.SUCCESS -> toast("Account created successfully")
+                AppConstants.SUCCESS -> {
+                    toast("Account created successfully")
+                    val intent = Intent(this,ProfileActivity::class.java)
+                    startActivity(intent)
+
+                }
                 AppConstants.FAILURE -> toast("Sign up failed")
             }
         })
