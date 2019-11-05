@@ -64,7 +64,7 @@ class RegistrationActivity : BaseActivity(),View.OnClickListener {
         progressBar.visibility = View.VISIBLE
         registerViewModel.onClickRegister(email,password,rePassword).observe(this,
             Observer {
-                progressBar.visibility = View.GONE
+
                 when(it){
                     AppConstants.INVALIDEMAIL -> toast("Invalid email")
                     AppConstants.PASSWORDEMPTY -> toast("Password is Empty")
@@ -80,6 +80,8 @@ class RegistrationActivity : BaseActivity(),View.OnClickListener {
     }
     private fun onSuccessVerificationCredentials(){
         registerViewModel.createAccount(email,password).observe(this, Observer {
+            progressBar.visibility = View.GONE
+
             when(it){
                 AppConstants.SUCCESS -> {
                     toast("Account created successfully")
