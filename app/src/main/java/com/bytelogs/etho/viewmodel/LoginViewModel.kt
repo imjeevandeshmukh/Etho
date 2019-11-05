@@ -7,11 +7,11 @@ import com.bytelogs.etho.AppConstants
 import com.bytelogs.etho.AppUtils
 import com.bytelogs.etho.repository.FirebaseRepository
 import com.google.firebase.auth.FirebaseUser
+import javax.inject.Inject
 
-class LoginViewModel :ViewModel(){
+class LoginViewModel @Inject constructor(val firebaseRepository: FirebaseRepository) :ViewModel(){
     private val onClickCallback = MutableLiveData<Int>()
 
-    private val firebaseRepository = FirebaseRepository()
 
      fun onClickLogin(email:String,password:String):LiveData<Int>{
         if(email.isNullOrEmpty()){
@@ -33,8 +33,8 @@ class LoginViewModel :ViewModel(){
     fun onLogin(email: String,password: String): LiveData<Int> {
        return firebaseRepository.signInEmailPassword(email,password)
     }
-    fun getFirebaseUser():FirebaseUser{
-        return firebaseRepository.getUser()
+    fun getFirebaseUser():FirebaseUser?{
+        return firebaseRepository?.getUser()
     }
 
 

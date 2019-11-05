@@ -7,10 +7,13 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.bytelogs.etho.AppConstants
 import com.bytelogs.etho.BaseActivity
+import com.bytelogs.etho.Etho
 import com.bytelogs.etho.R
 import com.bytelogs.etho.viewmodel.LoginViewModel
 import com.bytelogs.etho.viewmodel.RegisterViewModel
+import com.bytelogs.etho.viewmodelsfactory.ViewModelFactory
 import kotlinx.android.synthetic.main.activity_login.*
+import javax.inject.Inject
 
 class LoginActivity : BaseActivity(), View.OnClickListener {
 
@@ -18,19 +21,23 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
     private lateinit var password: String
     private lateinit var loginViewModel: LoginViewModel
 
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        (application as Etho).getApplicationComponent().inject(this)
         setContentView(R.layout.activity_login)
         btLogin.setOnClickListener(this)
         btRegister.setOnClickListener(this)
-        loginViewModel = ViewModelProviders.of(this).get(LoginViewModel::class.java)
+        loginViewModel = ViewModelProviders.of(this,viewModelFactory).get(LoginViewModel::class.java)
 
 
     }
 
     override fun onStart() {
         super.onStart()
-        if(loginViewModel.getFirebaseUser() != null){
+        if(loginViewModel?.getFirebaseUser() != null){
             moveToMain()
         }
 

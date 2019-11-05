@@ -23,6 +23,9 @@ import android.text.TextUtils
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
+import com.bytelogs.etho.Etho
+import com.bytelogs.etho.viewmodelsfactory.ViewModelFactory
+import javax.inject.Inject
 
 
 class ProfileActivity : BaseActivity(),View.OnClickListener {
@@ -30,14 +33,16 @@ class ProfileActivity : BaseActivity(),View.OnClickListener {
     private lateinit var profileViewModel: ProfileViewModel
     private var  profileUrl:String= ""
     private var  resultUri:Uri = Uri.EMPTY
-
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        (application as Etho).getApplicationComponent().inject(this)
         setContentView(R.layout.activity_profile)
         btSave.setOnClickListener(this)
         ivProfile.setOnClickListener(this)
-        profileViewModel = ViewModelProviders.of(this).get(ProfileViewModel::class.java)
+        profileViewModel = ViewModelProviders.of(this,viewModelFactory).get(ProfileViewModel::class.java)
         getUserDetail()
 
 
@@ -52,7 +57,9 @@ class ProfileActivity : BaseActivity(),View.OnClickListener {
         }
     }
     private fun getUserDetail(){
+        progressBar2.visibility = View.VISIBLE
         profileViewModel.getUserDetail().observe(this, Observer {
+            progressBar2.visibility = View.GONE
               if(it !=null){
                   etAge.setText(it.age)
                   etMobile.setText(it.mobile)
@@ -61,6 +68,7 @@ class ProfileActivity : BaseActivity(),View.OnClickListener {
                   Glide.with(this).load(it.profileImgUrl).into(ivProfile)
 
               }
+
         })
     }
     private fun uploadImage(){

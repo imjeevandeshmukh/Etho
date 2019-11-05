@@ -7,9 +7,12 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.bytelogs.etho.AppConstants
 import com.bytelogs.etho.BaseActivity
+import com.bytelogs.etho.Etho
 import com.bytelogs.etho.R
 import com.bytelogs.etho.viewmodel.RegisterViewModel
+import com.bytelogs.etho.viewmodelsfactory.ViewModelFactory
 import kotlinx.android.synthetic.main.activity_register.*
+import javax.inject.Inject
 
 class RegistrationActivity : BaseActivity(),View.OnClickListener {
 
@@ -19,10 +22,14 @@ class RegistrationActivity : BaseActivity(),View.OnClickListener {
     private lateinit var password:String
     private lateinit var rePassword:String
 
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        (application as Etho).getApplicationComponent().inject(this)
         setContentView(R.layout.activity_register)
-        registerViewModel = ViewModelProviders.of(this).get(RegisterViewModel::class.java)
+        registerViewModel = ViewModelProviders.of(this,viewModelFactory).get(RegisterViewModel::class.java)
         btRegister.setOnClickListener(this)
         btLogin.setOnClickListener(this)
 

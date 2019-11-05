@@ -8,11 +8,11 @@ import androidx.lifecycle.ViewModel
 import com.bytelogs.etho.AppConstants
 import com.bytelogs.etho.model.User
 import com.bytelogs.etho.repository.FirebaseRepository
+import javax.inject.Inject
 
-class ProfileViewModel :ViewModel(){
+class ProfileViewModel @Inject constructor(val firebaseRepository: FirebaseRepository):ViewModel(){
 
     private val onClickCallback = MutableLiveData<Int>()
-    private val firebaseRepository = FirebaseRepository()
 
     fun onClickSave(user: User):LiveData<Int>{
         if(TextUtils.isEmpty(user.name) && TextUtils.isEmpty(user.age) && TextUtils.isEmpty(user.mobile) && TextUtils.isEmpty(user.occupation)){

@@ -22,7 +22,7 @@ import com.google.firebase.database.ValueEventListener
 
 class FirebaseRepository {
 
-    private val auth: FirebaseAuth
+    val auth: FirebaseAuth
     private val database :FirebaseDatabase
     private val storage:FirebaseStorage
     private  val signInStatus = MutableLiveData<Int>()
@@ -48,8 +48,8 @@ class FirebaseRepository {
         })
         return signInStatus
     }
-    fun getUser():FirebaseUser{
-        return auth.currentUser!!
+    fun getUser(): FirebaseUser? {
+        return auth?.currentUser
     }
     fun createUserWithEmailPassword(email: String,password: String):MutableLiveData<Int>{
         auth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(OnCompleteListener {
@@ -62,8 +62,8 @@ class FirebaseRepository {
         return createUserStatus
     }
     fun getUserDetail():MutableLiveData<User>{
-        val uid =  getUser().uid
-        database.getReference("Users").child(uid).addListenerForSingleValueEvent(object : ValueEventListener {
+        val uid =  getUser()?.uid
+        database.getReference("Users").child(uid.toString()).addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val  user  = dataSnapshot.getValue(User::class.java)
                 readUserDetail.value = user
@@ -79,16 +79,16 @@ class FirebaseRepository {
 
     }
     fun saveUserProfileInfo(user: User){
-        val uid =  getUser().uid
+        val uid =  getUser()?.uid
         val usersRef = database.getReference("Users")
         user.profileImgUrl = profileImageUrl
         val users = mutableMapOf<String,User>()
-        users.put(uid, user)
+        users.put(uid.toString(), user)
         usersRef.setValue(users)
 
     }
     fun uploadFile(uri:Uri):LiveData<Int>{
-        val uid =  getUser().uid
+        val uid =  getUser()?.uid
         val imapath = storage.getReference("profile_images").child(uid + ".jpg")
         val uploadTask = imapath.putFile(uri)
         uploadTask.continueWithTask(object :
