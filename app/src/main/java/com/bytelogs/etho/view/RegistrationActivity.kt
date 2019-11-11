@@ -35,13 +35,6 @@ class RegistrationActivity : BaseActivity(),View.OnClickListener {
 
     }
 
-    override fun onStart() {
-        super.onStart()
-        if(registerViewModel.getFirebaseUser() !=null){
-            startActivity(Intent(this,MainActivity::class.java))
-            finish()
-        }
-    }
     override fun onClick(view: View?) {
         email = etEmail.text.toString()
         password = etPassword.text.toString()

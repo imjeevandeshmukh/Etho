@@ -21,7 +21,7 @@ import com.google.firebase.database.ValueEventListener
 
 
 
-class FirebaseRepository {
+public class FirebaseRepository {
 
     val auth: FirebaseAuth
     private val database :FirebaseDatabase

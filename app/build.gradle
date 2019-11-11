@@ -18,6 +18,9 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -29,6 +32,8 @@ android {
 
 dependencies {
     ext.dagger2_version = '2.16'
+    ext.coreVersion = "1.2.1-alpha02"
+    ext.JUnitVersion = "1.1.2-alpha02"
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.0.2'
@@ -43,10 +48,18 @@ dependencies {
     implementation 'com.theartofdev.edmodo:android-image-cropper:2.8.+'
     implementation 'com.github.bumptech.glide:glide:4.10.0'
     testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:rules:1.1.1'
     androidTestImplementation 'androidx.test:runner:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-intents:3.1.0'
+    androidTestImplementation 'org.mockito:mockito-android:2.7.15'
+    testImplementation "org.robolectric:robolectric:3.4.2"
 
     implementation "com.google.dagger:dagger:$dagger2_version"
     kapt "com.google.dagger:dagger-compiler:$dagger2_version"
     compileOnly "org.glassfish:javax.annotation:3.1.1"
+    androidTestImplementation "org.mockito:mockito-core:2.19.0"
+    androidTestImplementation "android.arch.core:core-testing:1.1.1"
+    testImplementation 'androidx.test:core:1.2.1-alpha02'
+    testImplementation 'androidx.test.ext:junit:1.1.2-alpha02'
 }
