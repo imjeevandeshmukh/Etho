@@ -32,8 +32,7 @@ class LoginViewModelTest {
     @Mock
     lateinit var onClickLoginObserver: Observer<Int>
 
-    //Mockito cannot mock final classes i.e., firebaseRepository uses FirebaseAuth and Firebase Databases.
-    //This test will fail.
+  
 
 
     @Before
